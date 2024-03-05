@@ -28,4 +28,30 @@ bottoneInvio.addEventListener('click', function() {
     } else {
       console.log("Il costo del biglietto è: " + bigliettoStandard.toFixed(2) + " euro");
     }
-  });
+
+    document.getElementById("calcolaPrezzoButton").addEventListener("click", function() {
+      calcolaPrezzo();
+    });
+
+    function calcolaPrezzo() {
+      let select = document.getElementById("selectPasseggero");
+      let selectedOption = select.options[select.selectedIndex].value;
+      let kmViaggio = parseFloat(document.getElementById("kmViaggio").value);
+      let prezzoBase = kmViaggio * 0.21; // Costo base del biglietto per km
+
+      let prezzo;
+
+      // Calcola il prezzo del biglietto in base all'opzione selezionata
+      switch(selectedOption) {
+        case "minorenne":
+          prezzo = prezzoBase * 0.8; // Applica lo sconto del 20% per i minorenni
+          break;
+        case "over65":
+          prezzo = prezzoBase * 0.6; // Applica lo sconto del 40% per gli over 65
+          break;
+        default:
+          prezzo = prezzoBase; // Nessuno sconto per il passeggero standard
+      }
+
+      document.getElementById("prezzoBiglietto").innerText = "Prezzo del biglietto: " + prezzo.toFixed(2) + " €";
+    }
