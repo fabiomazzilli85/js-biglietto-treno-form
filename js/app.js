@@ -35,8 +35,8 @@
 
     function calcolaPrezzo() {
       let select = document.getElementById("selectPasseggero");
-      let selectedOption = select.options[select.selectedIndex].value;
-      let kmViaggio = parseFloat(document.getElementById("kmViaggio").value);
+      let selectedOption = select.options[select.selectedIndex];
+      let kmViaggio = parseFloat(document.getElementById("kmViaggio"));
       let prezzoBase = kmViaggio * 0.21; // Costo base del biglietto per km
 
       let prezzo;
@@ -52,6 +52,6 @@
         default:
           prezzo = prezzoBase; // Nessuno sconto per il passeggero standard
       }
-
+      
       document.getElementById("prezzoBiglietto").innerText = "Prezzo del biglietto: " + prezzo.toFixed(2) + " €";
     }
